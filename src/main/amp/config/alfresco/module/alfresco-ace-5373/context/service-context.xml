@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+<beans>
+
+    <bean id="CMISConnector" class="es.keensoft.alfresco.opencmis.PatchedCMISConnector" init-method="setup">
+        <property name="store"                  value="${opencmis.connector.default.store}" />
+        <property name="rootPath"               value="${opencmis.connector.default.rootPath}" />
+        <property name="typesDefaultMaxItems"   value="${opencmis.connector.default.typesDefaultMaxItems}" />
+        <property name="typesDefaultDepth"      value="${opencmis.connector.default.typesDefaultDepth}" />
+        <property name="objectsDefaultMaxItems" value="${opencmis.connector.default.objectsDefaultMaxItems}" />
+        <property name="objectsDefaultDepth"    value="${opencmis.connector.default.objectsDefaultDepth}" />
+        <property name="renditionKindMapping">
+            <map>
+                <entry key="cmis:thumbnail">
+                    <list>
+                        <value>doclib</value>
+                    </list>
+                </entry>
+                <entry key="alf:webpreview">
+                    <list>
+                        <value>webpreview</value>
+                        <value>imgpreview</value>
+                    </list>
+                </entry>
+            </map>
+        </property>
+        
+        <property name="openHttpSession"        value="${opencmis.connector.default.openHttpSession}" />
+
+        <property name="OpenCMISDictionaryService"   ref="OpenCMISDictionaryService" />
+        <property name="OpenCMISQueryService"        ref="OpenCMISQueryService" />     
+        <property name="OpenCMISDictionaryService11" ref="OpenCMISDictionaryService1.1" />
+        <property name="OpenCMISQueryService11"      ref="OpenCMISQueryService1.1" />     
+
+        <property name="activityPoster"         ref="cmisActivityPoster" />
+        <property name="hiddenAspect"           ref="hiddenAspect" />
+        <property name="siteService"            ref="SiteService" />
+        <property name="actionService"          ref="ActionService" />
+        <property name="objectFilter"           ref="objectFilter" />
+        <property name="descriptorService"      ref="DescriptorService" />
+        <property name="nodeService"            ref="NodeService" />
+        <property name="thumbnailService"       ref="ThumbnailService" />
+        <property name="serviceRegistry"        ref="ServiceRegistry" />
+        <property name="fileFolderService"      ref="FileFolderService" />
+        <property name="versionService"         ref="VersionService" />
+        <property name="checkOutCheckInService" ref="CheckoutCheckinService" />
+        <property name="lockService"            ref="LockService" />
+        <property name="contentService"         ref="ContentService" />
+        <property name="renditionService"       ref="RenditionService" />
+        <property name="tenantAdminService"     ref="tenantAdminService" />
+        <property name="singletonCache"         ref="immutableSingletonCache" />
+        <property name="transactionService"     ref="transactionService"/>
+        <property name="authenticationService"  ref="authenticationService" />
+        <property name="permissionService"      ref="PermissionService" />
+        <property name="permissionModelDao"     ref="permissionsModelDAO" />
+        <property name="mimetypeService"        ref="MimetypeService" />
+        <property name="auditService"           ref="auditService" />
+        <property name="namespaceService"       ref="namespaceService" />
+        <property name="searchService"          ref="SearchService" />
+        <property name="dictionaryService"      ref="DictionaryService" />
+        <property name="behaviourFilter"        ref="policyBehaviourFilter" />
+        <property name="eventPublisher"         ref="eventPublisher" />
+
+        <property name="bulkMaxItems"           value="${opencmis.bulkUpdateProperties.maxItemsSize}" />
+        <property name="bulkBatchSize"          value="${opencmis.bulkUpdateProperties.batchSize}" />
+        <property name="bulkWorkerThreads"      value="${opencmis.bulkUpdateProperties.workerThreads}" />
+    </bean>
+
+</beans>
